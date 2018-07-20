@@ -1,0 +1,26 @@
+---
+title: "Maps"
+author: "Darius Kharazi"
+date: "7/20/2018"
+output: html_document
+---
+
+## Import Statements
+
+```{r setup}
+## Import libraries
+library(knitr)
+library(leaflet)
+library(maps)
+
+## Load data
+states <- map("state", fill = TRUE, plot = FALSE)
+```
+
+## Plot Map of US
+```{r leaflet}
+## Plot US
+leaflet(data = states) %>%
+  addTiles() %>%
+  addPolygons(fillColor = topo.colors(10, alpha = NULL), stroke = FALSE)
+```
