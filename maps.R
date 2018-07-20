@@ -2,6 +2,8 @@
 library(knitr)
 library(leaflet)
 library(maps)
+library(plotly)
+library(dplyr)
 
 ## Load data
 states <- map("state", fill = TRUE, plot = FALSE)
