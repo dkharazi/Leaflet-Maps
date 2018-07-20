@@ -12,6 +12,8 @@ output: html_document
 library(knitr)
 library(leaflet)
 library(maps)
+library(plotly)
+library(dplyr)
 
 ## Load data
 states <- map("state", fill = TRUE, plot = FALSE)
@@ -23,4 +25,15 @@ states <- map("state", fill = TRUE, plot = FALSE)
 leaflet(data = states) %>%
   addTiles() %>%
   addPolygons(fillColor = topo.colors(10, alpha = NULL), stroke = FALSE)
+```
+
+## Plot Distribution of Names
+```{r plotly}
+## Table of letters
+letters <- data.frame(table(substr(states$names, 1, 1)))
+
+## Donut plot
+plot_ly(labels = ~letters$Var1, values = ~letters$Freq) %>%
+  add_pie(hole = 0.6) %>%
+  layout(title = "First Letter of States", showlegend = FALSE)
 ```
